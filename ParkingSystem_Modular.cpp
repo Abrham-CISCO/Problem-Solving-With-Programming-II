@@ -1,139 +1,124 @@
 #include <iostream>
-#include <iomanip>
 using namespace std;
+struct employee
+{
+	string title;
+	string First_name;
+	string Last_name;
+	int ID;
+	float salary;
+	char sex;
+	int age;
+	float bonous;
+	float tax;
+	float pension;
+	string profession;
+	void computeBonous()
+	{
+		if(salary<120) bonous = 0.1 * salary;
+		else if(salary<=600) bonous = 0.08 * salary;
+		else if(salary<=1200) bonous = 0.06 * salary;
+		else if(salary<=2000) bonous = 0.04 * salary;		
+	}
+	void computeTax()
+	{
+		if(salary<120) tax = 0;
+		else if(salary<=600) tax = 0.1 * salary - 12;
+		else if(salary<=1200) tax = 0.15 * salary - 42;
+		else if(salary<=2000) tax = 0.2 * salary - 102;
+		else if(salary<=3000) tax = 0.3 * salary - 302;
+		else tax = 0.4 * salary - 602;
+	}
+	void computePension()
+	{
+		pension = salary * 0.04;
+	}
+	struct location
+	{
+		string city;
+		string subCity;
+		int kebele;
+	} address;
+};
 
-//assuming the maxmimum number of parked cars does not exceed 100
-const int size = 100;
-float Hr[size];
-unsigned int Ln[size];
-float charge[size];
+void displayTotalSalary(employee emp)
+{
+	emp.computeBonous();
+	emp.computePension();
+	emp.computeTax();
+	cout<<endl<<"Total Salary: "<<emp.bonous + emp.pension + emp.tax + emp.salary;
+}
 
+void inputData(employee &emp)
+{
+	cout<<"Title: ";
+	cin>>emp.title;
+	cout<<"First name: ";
+	cin>>emp.First_name;
+	cout<<"Last name: ";
+	cin>>emp.Last_name;
+	cout<<"ID: ";
+	cin>>emp.ID;
+	cout<<"Salary: ";
+	cin>>emp.salary;
+	cout<<"Sex: ";
+	cin>>emp.sex;
+	cout<<"Age: ";
+	cin>>emp.age;
+	cout<<"Profession: ";
+	cin>>emp.profession;
+	cout<<"City: ";
+	cin>>emp.address.city;
+	cout<<"Sub City: ";
+	cin>>emp.address.subCity;
+	cout<<"Kebele: ";
+	cin>>emp.address.kebele;
+}
 
-//function prototypes
-int inputData(int);
-void sort(int);
-void swap(float &x, float &y);
-void calc_Charge(int);
-float sum(int);
-void display(int);
-bool validateInputTime(int hr);
-bool validateInputNcar(int size, int nCar);
-
+void displayEmployee(employee emp)
+{
+	cout<<endl<<endl<<endl;
+	cout<<"Title: ";
+	cout<<emp.title<<endl;
+	cout<<"First name: ";
+	cout<<emp.First_name<<endl;
+	cout<<"Last name: ";
+	cout<<emp.Last_name<<endl;
+	cout<<"ID: ";
+	cout<<emp.ID<<endl;
+	cout<<"Salary: ";
+	cout<<emp.salary<<endl;
+	cout<<"Sex: ";
+	cout<<emp.sex<<endl;
+	cout<<"Age: ";
+	cout<<emp.age<<endl;
+	cout<<"Profession: ";
+	cout<<emp.profession<<endl;
+	cout<<"City: ";
+	cout<<emp.address.city<<endl;
+	cout<<"Sub City: ";
+	cout<<emp.address.subCity<<endl;
+	cout<<"Kebele: ";
+	cout<<emp.address.kebele<<endl;
+	cout<<"bonous: ";
+	cout<<emp.bonous<<endl;
+	cout<<"tax: ";
+	cout<<emp.tax<<endl;
+	cout<<"pension: ";
+	cout<<emp.pension<<endl;
+}
 
 int main()
 {
-	unsigned int nCar;
-	nCar = inputData(1);
-	for(int i=0; i<nCar; i++)
-	{
-		system("cls");
-		cout<<"\n\nCar "<<i+1<<endl;
-		Ln[i] = inputData(2);
-		Hr[i] = inputData(3);
-	}
-	calc_Charge(nCar);
-	sort(nCar);
-	display(nCar);
+	employee Abrham;
+	//Accept input
+	inputData(Abrham);
+	//Compute tax, pension and Bonus
+	Abrham.computeBonous();
+	Abrham.computePension();
+	Abrham.computeTax();
+	//Display employee detail	
+	displayEmployee(Abrham);
+	displayTotalSalary(Abrham);
 	return 0;
-}
-bool validateInputNcar(int size, int nCar)
-{
-	if(nCar > size) return false;
-	else return true;
-}
-bool validateInputTime(int hr)
-{
-	if(hr > 24) return false;
-	else return true;
-}
-int inputData(int messageType)
-{
-	int input;
-	if(messageType == 1)
-	{
-		do{
-			cout <<"\nEnter the number of car(s)";
-			cout <<"\n\n\tnumber = ";
-			cin>>input;
-			if(!validateInputNcar(100,input))
-			{
-				cout <<"Number of cars can not exceed 100"<<endl<<"Please Try Again";
-			}
-		}
-		while(!validateInputNcar(100,input));
-		return input;
-	}
-	else if(messageType == 2)
-	{
-		cout<<"\n\n\tLicence number = ";
-		cin>>input;
-		return input;
-	}
-	else
-	{
-		do{
-			cout<<"\n\tHour(s) parked = ";
-			cin>>input;
-			if(!validateInputTime(input))
-			{
-				cout << "\n Parking hour can not be greater than 24\n";
-				cout << "Please, enter a correct parking hour.\n";
-			}
-		}while(input>24);
-		return input;
-	}
-}
-void sort(int nCar)
-{
-	for(int i=0;i<nCar;i++)
-		for(int j=nCar-1;j>0;j--)
-		{
-			if(Ln[j]<Ln[j-1])
-			{
-				//do swapping
-				swap(Ln[j],Ln[j-1]);
-				swap(Hr[j],Hr[j-1]);
-				swap(charge[j],charge[j-1]);
-			}
-		}
-}
-void swap(float &x, float &y)
-{
-	int z;
-	z = x;
-	x = y;
-	y = z;
-}
-void calc_Charge(int nCar)
-{
-	for(int j=0; j<nCar; j++)
-	{
-		if(Hr[j] <= 3)
-			charge[j] = 2;
-		else
-			charge[j] = 2 + (Hr[j]-3)*0.5;
-	}
-}
-float sum(int nCar)
-{
-	float tIncome=0;
-	for(int k=0; k<nCar;k++) tIncome+=charge[k];
-	return tIncome;
-}
-void display(int nCar)
-{
-	system("cls");
-	cout<<"\n\n     Parking information\n";
-	cout<<"  ______________________________\n\n\n";
-	cout<<"License no"<<setw(10)<<"Hours"<<setw(11)<<"   Charge\n";
-	cout<<"__________"<<setw(10)<<"_____"<<setw(11)<<"   ______\n";
-
-	for(int m=0;m<nCar;m++)
-	{
-		cout<<endl;
-		cout<<setw(10)<<Ln[m]<<setw(10)<<float(Hr[m])<<setw(10)<<charge[m];
-	}
-	cout<<"\n                         ____________\n";
-	cout<<"\n\n"<<setw(10)<<"\t\t          Total "<<setw(5.5)<<sum(nCar)<<"\n                                  ___________________\n";
-	system("pause");
 }
