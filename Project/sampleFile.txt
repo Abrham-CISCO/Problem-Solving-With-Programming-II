@@ -1,0 +1,6 @@
+AuthorName"Book Name"ISBN"ShelfNo"row"date"month"year"Edition"quantity"BookCategory4"-
+AuthorName1"Book Name1"ISBN1"4"4"1"12"1997"4"4"BookCategory4"-
+AuthorName2"Book Name2"ISBN2"2"2"1"12"1997"2"2"BookCategory2"-
+AuthorName3"Book Name3"ISBN3"3"3"1"12"1997"3"3"BookCategory3"-
+AuthorName4"Book Name4"ISBN4"4"4"1"12"1997"4"4"BookCategory4"-
+AuthorName5"Book Name5"ISBN5"5"5"1"12"1997"5"5"BookCategory5"-

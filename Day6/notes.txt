@@ -1,0 +1,27 @@
+you can return multiple values from a function using a structure.
+
+    struct address {
+        string state;
+        int house_no;
+        string email;
+        long int phone_number;
+    };
+    struct person{
+        string name;
+        int age;
+        struct address addr;
+    };
+
+is the same as 
+
+
+    struct person{
+        string name;
+        int age;
+	struct address {
+        	string state;
+        	int house_no;
+        	string email;
+        	long int phone_number;
+    	} addr;
+    };

@@ -1,0 +1,115 @@
+Q10.	The binomial model which is used to determine the probability of getting r success in n trials is given by the following relation
+pr=n!/(n-r)!r! p^r ?(1-p)?^(n-r)
+      Where p is the probability of success in a single trial.0 <= p <=1
+Write a program that accepts n, r and p, calculate and display the probability. Use modular approach (do not use the math.h library). What advantage do you get by using modularization?
+
+#include <iostream>
+
+
+using namespace std;
+
+
+void input();
+
+int factorial(int);
+
+int power(int,int);
+
+
+void input(){
+
+    int n, r, p;
+
+    cout<<"enter n: "<<endl;
+
+    cin>>n;
+
+    cout<<"enter r: "<<endl;
+
+    cin>>r;
+
+    cout<<"enter p: "<<endl;
+
+    cin>>p;
+
+}
+
+
+int factorial(int n){
+
+    int fact = 1;
+
+    for(int i = 1; i <= n; i++){
+
+        fact = fact * i;
+
+    }
+ 
+   return fact;
+
+}
+
+
+int power(int base, int exponent){
+
+    int result;
+
+    for (int i = 1; i <= exponent; i++){
+
+        result = base * base;
+
+    }
+
+    return result;
+
+}
+
+
+int main()
+{
+
+    int n, r, p, pr, fact, result;
+
+    input();
+
+    pr = factorial(n)*power(p,r)*power((1-p),(n-r))/factorial((n-r))*factorial(r);
+    cout<<"the probablity is: "<<pr<<endl;
+
+    return 0;
+
+}
+
+## The modular approach made it easy to reuse a functionality on different part of the program. 
+
+
+
+
+Q8.	Identify the errors in the following function definition
+
+a) fun(float x, int y)            
+{                                  
+        int r;
+       …
+       return r;
+}
+-the return type of the function
+ is not specified.
+
+b) int fun(float x, y)
+{
+        int r;
+       …
+       return r;
+}
+-the datatype of the second parameter 
+ is not specified.
+
+c)void fun(float x, int y)
+{
+        float r;
+       …
+       return r;
+}
+
+-a function with void type does not 
+ have a return statment.

@@ -1,0 +1,10 @@
+1.Write a c++ strucuture that record full information of each employee in as orginization.(Title, First_name, Last_name, ID, salary, address, sex, age, profession, etc.)
+The program should also compute bonous, tax, and pension of each employee using functions based on the following information and display employee detail information.
+
+Bonus		Salary	Tax
+10% of Salary	<120	0
+8% of Salary	<=600	10% of Salary - 12
+6% of Salary	<=1200	15% of Salary - 42
+4% of Salary	<=2000	20% of Salary - 102
+$		<=3000	30% of Salary - 302
+		Otherwise	40% of salary - 602

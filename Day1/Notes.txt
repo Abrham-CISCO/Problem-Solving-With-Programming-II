@@ -1,0 +1,5 @@
+Function can be classified as Built-in and user defined.
+Can also be classified as return value or does not return value
+Can also be classified as With Parameter and Without Parameter
+
+example of built in function : String manipulation functions.

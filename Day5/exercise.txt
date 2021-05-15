@@ -1,0 +1,2 @@
+Write a c++ structure to store personal information (Hint: use citizen ID or passport information)
+Write a c++ strucutre to record books information in a library
